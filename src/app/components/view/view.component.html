@@ -1,0 +1,13 @@
+<div class="content">
+  <ng-container *ngIf="imageItem">
+    <div class="top-block">
+      <button class="btn back" routerLink="/"><mat-icon>arrow_back_ios</mat-icon></button>
+      <div class="download-block">
+        <a class="btn download" [href]="imageItem.hits[0].pageURL"><mat-icon>preview</mat-icon></a>
+        <button class="btn download" (click)="getFile(imageItem.hits[0].largeImageURL, imageItem.hits[0].id)"><mat-icon>download</mat-icon></button>
+      </div>
+    </div>
+    <img src="{{imageItem.hits[0].largeImageURL}}" alt="{{imageItem.hits[0].tags}}">
+    <div class="tags">{{imageItem.hits[0].tags}}</div>
+  </ng-container>
+</div>

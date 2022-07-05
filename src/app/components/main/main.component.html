@@ -1,0 +1,75 @@
+<div class="content">
+  <form [formGroup]="search">
+    <div class="search-block">
+      <div class="search">
+        <mat-icon class="sch">search</mat-icon>
+        <input formControlName="text" placeholder="Поиск">
+        <mat-icon class="close" *ngIf="search.value.text !== null" (click)="clear()">close</mat-icon>
+      </div>
+      <div class="option" (click)="option = !option">
+        <mat-icon>tune</mat-icon>
+      </div>
+    </div>
+    <div class="option-block" *ngIf="option">
+      <app-select formControlName="category" [label]="'Категории'" [options]="categoryList"></app-select>
+      <app-select formControlName="imageType" [label]="'Тип изображения'" [options]="imageTypeList"></app-select>
+      <app-select formControlName="orientation" [label]="'Ориентация'" [options]="orientationList"></app-select>
+      <app-select formControlName="colors" [label]="'Цвета'" [options]="colorList"></app-select>
+      <div class="input">
+        <p class="label">Минимальная ширина</p>
+        <div class="input-block">
+          <input type="number" formControlName="min_width">
+        </div>
+      </div>
+      <div class="input">
+        <p class="label">Минимальная высота</p>
+        <div class="input-block">
+          <input type="number" formControlName="min_height">
+        </div>
+      </div>
+      <app-select formControlName="order" [label]="'Сортировать'" [options]="sortList"></app-select>
+      <app-select formControlName="perPage" [label]="'Кол-во на стр.'" [options]="perPageList"></app-select>
+      <div>
+        <div class="checkbox-block">
+          <input id="editorsChoice" type="checkbox" formControlName="editorsChoice">
+          <label for="editorsChoice">Выбор редакции</label>
+        </div>
+        <div class="checkbox-block">
+          <input id="safesearch" type="checkbox" formControlName="safesearch">
+          <label for="safesearch">Безопасные изобр.</label>
+        </div>
+      </div>
+      <button class="clear-filter" (click)="clearFilter()">Очистить фильтр</button>
+    </div>
+
+  </form>
+  <div class="img-block" *ngIf="data">
+    <div class="img-item" *ngFor="let item of data.hits" (click)="viewImage(item.id)">
+      <img src="{{item.webformatURL}}" alt="{{item.tags}}">
+      <div class="tags">{{item.tags}}</div>
+    </div>
+  </div>
+  <div class="paginator">
+    <button class="left" (click)="getToPage(1)">
+      <svg width="26" height="15" viewBox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="11" y1="7.5" x2="26" y2="7.5" stroke="#B9B8B8"/>
+        <path d="M0 7.5L11.25 1.00481V13.9952L0 7.5Z" fill="#B9B8B8"/>
+      </svg>
+    </button>
+    <div class="page-block">
+      <button *ngFor="let item of pageList"
+              class="page"
+              (click)="getToPage(item)"
+              [class.active]="item === pageIndex"
+      >
+        <div class="dot"></div>
+        <span class="num">{{item}}</span></button>
+    </div>
+    <button class="right" (click)="getToPage(pageList[pageList.length - 1])">
+      <svg width="26" height="15" viewBox="0 0 26 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line y1="-0.5" x2="15" y2="-0.5" transform="matrix(-1 0 0 1 15 8)" stroke="#B9B8B8"/>
+        <path d="M26 7.5L14.75 1.00481V13.9952L26 7.5Z" fill="#B9B8B8"/>
+      </svg>
+    </button>
+  </div>
+</div>

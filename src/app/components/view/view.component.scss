@@ -1,0 +1,63 @@
+.content {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #2f2f2f;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .tags {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(#000, .7);
+    background: -webkit-linear-gradient(0deg, rgba(#000, .7) 0%, rgba(#000, 0) 100%);
+    background: linear-gradient(0deg, rgba(#000, .7) 0%, rgba(#000, 0) 100%);
+    font-size: 12px;
+    line-height: 14px;
+    color: #dcdcdc;
+    text-align: center;
+  }
+
+  .top-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background: rgba(#000, .7);
+    background: -webkit-linear-gradient(0deg, rgba(#000, 0) 0%, rgba(#000, .7) 100%);
+    background: linear-gradient(0deg, rgba(#000, 0) 0%, rgba(#000, .7) 100%);
+  }
+
+  .btn {
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+
+    &.back {
+      margin-left: 20px;
+    }
+
+    &.download {
+      margin-right: 20px;
+    }
+
+    .mat-icon {
+      color: #ffffff
+    }
+  }
+}
